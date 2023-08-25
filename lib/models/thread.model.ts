@@ -1,17 +1,20 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const threadSchema = new mongoose.Schema({
-  text: { type: String, require: true },
+  text: {
+    type: String,
+    required: true,
+  },
   author: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'User',
-    require: true,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
   },
   community: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Community',
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Community",
   },
-  createAt: {
+  createdAt: {
     type: Date,
     default: Date.now,
   },
@@ -20,12 +23,12 @@ const threadSchema = new mongoose.Schema({
   },
   children: [
     {
-      type: mongoose.Schema.ObjectId,
-      ref: 'Thread',
-    }
-  ]
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Thread",
+    },
+  ],
 });
 
-const Thread = mongoose.models.Thread || mongoose.model('Thread', threadSchema);
+const Thread = mongoose.models.Thread || mongoose.model("Thread", threadSchema);
 
 export default Thread;
